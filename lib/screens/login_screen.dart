@@ -148,7 +148,7 @@ class LoginPage extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade300),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Image.asset("lib/images/apple.png"),
+      child: Image.asset(assetPath),
     );
   }
 }
