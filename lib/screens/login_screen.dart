@@ -36,6 +36,9 @@ class LoginScreen extends StatelessWidget {
               child: const Text('Login'),
             ),
             TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Color(0xFF68AD80),
+              ),
               onPressed: () {
                 // Navigate to the registration screen
               },
