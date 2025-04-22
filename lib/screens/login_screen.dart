@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:zad/widgets/CustomTextFilde.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,31 +21,21 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
 
-                // Email Field
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter your Email Or Number',
-                    labelText: 'Email',
-                    prefixIcon: const Icon(Icons.email_outlined),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
+                const CustomTextField(
+                  label: 'Email',
+                  hintText: 'Enter your Email Or Number',
+                  prefixIcon: Icons.email_outlined,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 20),
 
                 // Password Field
-                TextField(
+                const CustomTextField(
+                  label: 'Password',
+                  hintText: '************',
+                  prefixIcon: Icons.lock_outline,
                   obscureText: true,
-                  decoration: InputDecoration(
-                    hintText: '************',
-                    labelText: 'Password',
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    suffixIcon: const Icon(Icons.visibility_outlined),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
+                  suffixIcon: Icon(Icons.visibility_outlined),
                 ),
 
                 const SizedBox(height: 10),
@@ -54,13 +46,24 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Checkbox(value: false, onChanged: (value) {}),
-                        const Text('Remember Me'),
+                        Checkbox(
+                          value: false,
+                          onChanged: (value) {},
+                          overlayColor:
+                              const MaterialStatePropertyAll(Colors.grey),
+                        ),
+                        const Text(
+                          'Remember Me',
+                          style: TextStyle(color: Colors.grey),
+                        ),
                       ],
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text('Forget password'),
+                      child: const Text(
+                        'Forget password',
+                        style: TextStyle(color: Colors.blue),
+                      ),
                     ),
                   ],
                 ),
@@ -79,7 +82,10 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: const Text('Log in'),
+                    child: const Text(
+                      'Log in',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
 
@@ -123,12 +129,12 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildSocialIcon(
-                        " lib/images/facebook.png"), // replace with your icons
+                    _buildSocialIcon(const Icon(
+                        FontAwesomeIcons.google)), // replace with your icons
                     const SizedBox(width: 20),
-                    _buildSocialIcon('lib/images/facebook.png'),
+                    _buildSocialIcon(const Icon(FontAwesomeIcons.facebook)),
                     const SizedBox(width: 20),
-                    _buildSocialIcon('lib/images/apple.png'),
+                    _buildSocialIcon(const Icon(FontAwesomeIcons.apple)),
                   ],
                 ),
               ],
@@ -139,7 +145,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialIcon(String assetPath) {
+  Widget _buildSocialIcon(Widget assetPath) {
     return Container(
       width: 50,
       height: 50,
@@ -148,7 +154,7 @@ class LoginPage extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade300),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Image.asset(assetPath),
+      child: assetPath,
     );
   }
 }
