@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
+import 'package:zad/widgets/SocialMediaIcon.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -74,18 +76,11 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   height: 48,
-                  child: ElevatedButton(
+                  child: CustomButton(
+                    text: 'Login',
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green[600],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Text(
-                      'Log in',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    backgroundColor: const Color(0xFF4CAF50),
+                    textColor: Colors.white,
                   ),
                 ),
 
@@ -129,12 +124,20 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildSocialIcon(const Icon(
-                        FontAwesomeIcons.google)), // replace with your icons
+                    SocialIconButton(
+                      icon: const Icon(FontAwesomeIcons.google),
+                      onTap: () {},
+                    ),
                     const SizedBox(width: 20),
-                    _buildSocialIcon(const Icon(FontAwesomeIcons.facebook)),
+                    SocialIconButton(
+                      icon: const Icon(FontAwesomeIcons.facebook),
+                      onTap: () {},
+                    ),
                     const SizedBox(width: 20),
-                    _buildSocialIcon(const Icon(FontAwesomeIcons.apple)),
+                    SocialIconButton(
+                      icon: const Icon(FontAwesomeIcons.apple),
+                      onTap: () {},
+                    ),
                   ],
                 ),
               ],
@@ -142,19 +145,6 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildSocialIcon(Widget assetPath) {
-    return Container(
-      width: 50,
-      height: 50,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: assetPath,
     );
   }
 }

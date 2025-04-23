@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
+import 'package:zad/widgets/SocialMediaIcon.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -75,19 +77,44 @@ class RegisterPage extends StatelessWidget {
               ),
 
               // Register Button
-              ElevatedButton(
+              CustomButton(
+                text: "Register",
+                backgroundColor: const Color(0xFF68AD80),
+                textColor: Colors.white,
                 onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Theme.of(context).primaryColor, // Set the button color
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(8), // Set the border radius
+              ),
+              const Row(
+                children: [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('OR'),
                   ),
-                ),
-                child: const Text("Register"),
+                  Expanded(child: Divider()),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // Social Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialIconButton(
+                    icon: const Icon(FontAwesomeIcons.google),
+                    onTap: () {},
+                  ), // replace with your icons
+                  const SizedBox(width: 20),
+                  SocialIconButton(
+                    icon: const Icon(FontAwesomeIcons.facebook),
+                    onTap: () {},
+                  ),
+                  const SizedBox(width: 20),
+                  SocialIconButton(
+                    icon: const Icon(FontAwesomeIcons.apple),
+                    onTap: () {},
+                  ),
+                ],
               ),
             ]),
           ),
