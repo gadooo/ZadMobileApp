@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomCategoryCard extends StatelessWidget {
+class CustomCategoryTab extends StatelessWidget {
   final String label;
   final Color labelColor;
   final Color backgroundColor;
@@ -8,7 +8,7 @@ class CustomCategoryCard extends StatelessWidget {
   final double width;
   final double height;
 
-  const CustomCategoryCard({
+  const CustomCategoryTab({
     super.key,
     required this.label,
     required this.imagePath,

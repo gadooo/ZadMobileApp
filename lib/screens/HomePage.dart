@@ -18,25 +18,6 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'lib/images/logo.png',
-                      height: 35,
-                      width: 35,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(FontAwesomeIcons.bars))
-                  ],
-                )),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SearchBarWidget(),
@@ -50,7 +31,7 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomCategoryCard(
+                  CustomCategoryTab(
                     label: 'Fruits',
                     imagePath: 'lib/images/fruits.png',
                     backgroundColor: Colors.white,
@@ -59,7 +40,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CustomCategoryCard(
+                  CustomCategoryTab(
                     label: "oli",
                     imagePath: 'lib/images/oil.png',
                     labelColor: Colors.black,
@@ -68,7 +49,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CustomCategoryCard(
+                  CustomCategoryTab(
                     label: "vegetables",
                     imagePath: 'lib/images/vegetables.png',
                     labelColor: Colors.black,
@@ -77,7 +58,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CustomCategoryCard(
+                  CustomCategoryTab(
                     label: "meats",
                     imagePath: 'lib/images/meat.png',
                     labelColor: Colors.black,
@@ -86,7 +67,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  CustomCategoryCard(
+                  CustomCategoryTab(
                     label: "cooksipices",
                     imagePath: 'lib/images/coockspices.png',
                     labelColor: Colors.black,
