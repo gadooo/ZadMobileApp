@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:zad/Models/ProductModel.dart';
+import 'package:zad/Services/ProductApi.dart';
 import 'package:zad/widgets/CategoryTab.dart';
 import 'package:zad/widgets/LimitedOffer.dart';
 import 'package:zad/widgets/ProductCard.dart';
@@ -126,51 +128,36 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/meat.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/oil.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/fruits.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: FutureBuilder<List<Product>>(
+                    future: ApiService.fetchProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                            child: Text('Error loading products'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                            child: Text('No products available'));
+                      } else {
+                        final products = snapshot.data!;
+                        return Row(
+                          children: products.map((product) {
+                            return ProductCard(
+                              imagePath: product.imageUrl,
+                              onPressed: () {},
+                              price: product.price,
+                              title: product.name,
+                              unit: "kg",
+                            ); // Pass the product
+                            // Pass the product
+                          }).toList(),
+                        );
+                      }
+                    }),
+              )),
               const SizedBox(
                 height: 10,
               ),
@@ -205,51 +192,35 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: FutureBuilder<List<Product>>(
+                    future: ApiService.fetchProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                            child: Text('Error loading products'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                            child: Text('No products available'));
+                      } else {
+                        final products = snapshot.data!;
+                        return Row(
+                          children: products.map((product) {
+                            return ProductCard(
+                              imagePath: product.imageUrl,
+                              onPressed: () {},
+                              price: product.price,
+                              title: product.name,
+                              unit: "kg",
+                            );
+                          }).toList(),
+                        );
+                      }
+                    }),
+              )),
               const SizedBox(
                 height: 10,
               ),
@@ -287,51 +258,35 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: FutureBuilder<List<Product>>(
+                    future: ApiService.fetchProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                            child: Text('Error loading products'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                            child: Text('No products available'));
+                      } else {
+                        final products = snapshot.data!;
+                        return Row(
+                          children: products.map((product) {
+                            return ProductCard(
+                              imagePath: product.imageUrl,
+                              onPressed: () {},
+                              price: product.price,
+                              title: product.name,
+                              unit: "kg",
+                            );
+                          }).toList(),
+                        );
+                      }
+                    }),
+              )),
               const SizedBox(
                 height: 10,
               ),
@@ -369,51 +324,35 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: FutureBuilder<List<Product>>(
+                    future: ApiService.fetchProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                            child: Text('Error loading products'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                            child: Text('No products available'));
+                      } else {
+                        final products = snapshot.data!;
+                        return Row(
+                          children: products.map((product) {
+                            return ProductCard(
+                              imagePath: product.imageUrl,
+                              onPressed: () {},
+                              price: product.price,
+                              title: product.name,
+                              unit: "kg",
+                            );
+                          }).toList(),
+                        );
+                      }
+                    }),
+              )),
               const SizedBox(
                 height: 10,
               ),
@@ -451,51 +390,35 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: FutureBuilder<List<Product>>(
+                    future: ApiService.fetchProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                            child: Text('Error loading products'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                            child: Text('No products available'));
+                      } else {
+                        final products = snapshot.data!;
+                        return Row(
+                          children: products.map((product) {
+                            return ProductCard(
+                              imagePath: product.imageUrl,
+                              onPressed: () {},
+                              price: product.price,
+                              title: product.name,
+                              unit: "kg",
+                            );
+                          }).toList(),
+                        );
+                      }
+                    }),
+              )),
               SizedBox(
                 height: 10,
               ),
@@ -533,51 +456,35 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               Container(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ProductCard(
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                        unit: 'Kg',
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                        unit: 'Kg',
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ProductCard(
-                        unit: 'Kg',
-                        imagePath: 'lib/images/vegetables.png',
-                        title: 'Fresh Vegetables',
-                        price: 18,
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+                  child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: FutureBuilder<List<Product>>(
+                    future: ApiService.fetchProducts(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                            child: Text('Error loading products'));
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Center(
+                            child: Text('No products available'));
+                      } else {
+                        final products = snapshot.data!;
+                        return Row(
+                          children: products.map((product) {
+                            return ProductCard(
+                              imagePath: product.imageUrl,
+                              onPressed: () {},
+                              price: product.price,
+                              title: product.name,
+                              unit: "kg",
+                            );
+                          }).toList(),
+                        );
+                      }
+                    }),
+              )),
               const SizedBox(
                 height: 35,
               ),

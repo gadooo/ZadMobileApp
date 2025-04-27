@@ -1,83 +1,63 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:zad/Models/ProductModel.dart';
 
 class ProductCard extends StatelessWidget {
+  final String unit;
   final String imagePath;
   final String title;
   final double price;
-  final String unit;
   final VoidCallback onPressed;
 
   const ProductCard({
-    Key? key,
+    super.key,
+    required this.unit,
     required this.imagePath,
     required this.title,
     required this.price,
-    required this.unit,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    return GestureDetector(
+      onTap: onPressed,
       child: Container(
-        width: 160,
-        padding: const EdgeInsets.all(12),
+        width: 150,
+        margin: const EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            // Product Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                imagePath,
-                height: 100,
-                fit: BoxFit.cover,
-              ),
+            Image.memory(base64Decode(imagePath),
+                height: 100, fit: BoxFit.cover),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(title, style: Theme.of(context).textTheme.bodyLarge),
             ),
-            const SizedBox(height: 10),
-            // Product Title
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 6),
-            // Price and unit
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: '${price.toStringAsFixed(0)}\$ ',
-                    style: const TextStyle(
-                      color: Colors.orange,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: '/$unit',
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-            // Add to Cart Button
+            Text('$price $unit', style: Theme.of(context).textTheme.bodyMedium),
+            const SizedBox(height: 5),
             ElevatedButton(
               onPressed: onPressed,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green[400],
+                backgroundColor: Colors.green,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
               child: const Text(
-                "Add to cart",
+                'Add to Cart',
                 style: TextStyle(color: Colors.white),
               ),
             ),
