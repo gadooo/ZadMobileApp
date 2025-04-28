@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zad/Services/AuthApi.dart';
@@ -42,7 +43,9 @@ class _RegisterPageState extends State<RegisterPage> {
         errorMessage = e.toString();
         // errorMessage = 'Registration failed. Please try again.';
       });
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
 
       // ignore: use_build_context_synchronously
       Future.delayed(const Duration(seconds: 4), () {

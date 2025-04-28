@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class SocialIconButton extends StatelessWidget {
@@ -11,7 +13,7 @@ class SocialIconButton extends StatelessWidget {
   final BoxShadow? boxShadow;
 
   const SocialIconButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onTap,
     this.size = 50,
@@ -20,7 +22,7 @@ class SocialIconButton extends StatelessWidget {
     this.borderColor = const Color(0xFFDDDDDD),
     this.backgroundColor,
     this.boxShadow,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

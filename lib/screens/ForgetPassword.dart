@@ -1,10 +1,12 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:zad/screens/VirefiyCodePage.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
 
 class ForgetPassword extends StatefulWidget {
-  const ForgetPassword({Key? key}) : super(key: key);
+  const ForgetPassword({super.key});
 
   @override
   _ForgetPasswordState createState() => _ForgetPasswordState();
@@ -29,12 +31,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 "Enter your email to get Verification code",
                 style: TextStyle(fontFamily: "Roboto Flex"),
               ),
-              SizedBox(height: 89),
+              const SizedBox(height: 89),
               CustomTextField(
                   labelText: "Email",
                   hintText: "Enter your Email or phone numer ",
                   controller: TextEditingController()),
-              SizedBox(height: 45),
+              const SizedBox(height: 45),
               CustomButton(
                   text: "Send",
                   onPressed: () {

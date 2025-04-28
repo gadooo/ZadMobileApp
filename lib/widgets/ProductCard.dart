@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:zad/Models/ProductModel.dart';
 
 class ProductCard extends StatelessWidget {
   final String unit;

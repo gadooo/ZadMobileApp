@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       if (loginResponse != null) {
         // print('Login Successful: Token => ${loginResponse.token}');
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('token', loginResponse.token!);
+        await prefs.setString('token', loginResponse.token);
 
         // التوجه إلى الصفحة الرئيسية بعد تسجيل الدخول الناجح
         Navigator.pushReplacement(

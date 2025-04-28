@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -8,13 +10,13 @@ class CustomTextField extends StatelessWidget {
   final Widget? sufix; // Add this line to include the prefix widget
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.labelText,
     required this.hintText,
     this.obscureText = false,
     required this.controller,
     this.sufix,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class CustomTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Color(0xFF68AD80), width: 1.5),
+          borderSide: const BorderSide(color: Color(0xFF68AD80), width: 1.5),
         ),
       ),
     );

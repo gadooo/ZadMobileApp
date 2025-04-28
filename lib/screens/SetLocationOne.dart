@@ -1,10 +1,17 @@
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:zad/screens/HomePage.dart';
-import 'package:zad/screens/login_screen.dart';
 import 'package:zad/widgets/CustomAppBar.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 
 class SetLocationOne extends StatefulWidget {
+  // ignore: use_super_parameters
   const SetLocationOne({Key? key}) : super(key: key);
 
   @override

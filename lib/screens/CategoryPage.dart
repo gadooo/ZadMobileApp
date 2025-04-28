@@ -1,10 +1,12 @@
+// ignore_for_file: file_names, unused_import
+
 import 'package:flutter/material.dart';
 import 'package:zad/widgets/CategoryCard.dart';
 import 'package:zad/widgets/CategoryTab.dart';
 import 'package:zad/widgets/CustomAppBar.dart';
 
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({Key? key}) : super(key: key);
+  const CategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {

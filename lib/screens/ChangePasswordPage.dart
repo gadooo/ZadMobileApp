@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zad/screens/login_screen.dart';
@@ -6,7 +8,7 @@ import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
 
 class ChangePasswordPage extends StatefulWidget {
-  const ChangePasswordPage({Key? key}) : super(key: key);
+  const ChangePasswordPage({super.key});
 
   @override
   _ChangePasswordPageState createState() => _ChangePasswordPageState();
@@ -64,7 +66,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             Navigator.of(context).pop();
             // هنا كمان ممكن تمشي صفحة تسجيل الدخول
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => LoginPage()));
+                context, MaterialPageRoute(builder: (_) => const LoginPage()));
           }
         });
 

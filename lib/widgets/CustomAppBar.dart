@@ -1,5 +1,7 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;

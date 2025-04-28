@@ -1,5 +1,8 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zad/Models/ProductModel.dart';
@@ -12,7 +15,9 @@ class ApiService {
   static Future<List<Product>> fetchProducts() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-    print(token);
+    if (kDebugMode) {
+      print(token);
+    }
     if (token == null) {
       throw Exception('Token not found');
     }

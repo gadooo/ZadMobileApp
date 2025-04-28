@@ -1,7 +1,9 @@
+// ignore: duplicate_ignore
 // ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:zad/screens/ChangePasswordPage.dart';
-import 'package:zad/screens/login_screen.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 
 import '../widgets/VirefiyCodeWidget.dart';
@@ -19,7 +21,7 @@ class _VirefiyCodeState extends State<VirefiyCode> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
