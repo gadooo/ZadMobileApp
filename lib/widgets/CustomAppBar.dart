@@ -5,13 +5,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
   final Widget? leading;
   final VoidCallback? onMenuTap;
+  final Widget? icon;
 
   const CustomAppBar({
-    Key? key,
+    super.key,
     this.height = kToolbarHeight,
     this.leading,
     this.onMenuTap,
-  }) : super(key: key);
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +21,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       toolbarHeight: height,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // 👇 use leading if provided, else use default logo
-          leading ??
-              Image.asset(
-                'lib/images/logo.png',
-                height: 35,
-                width: 35,
-              ),
-          IconButton(
-            onPressed: onMenuTap ?? () {},
-            icon: const Icon(FontAwesomeIcons.bars),
-            color: Colors.black,
-          ),
-        ],
+      title: Image.asset(
+        'lib/images/logo.png',
+        height: 35,
+        width: 35,
       ),
+      leading: leading,
     );
   }
 

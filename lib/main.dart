@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zad/screens/CategoryPage.dart';
 import 'package:zad/screens/ForgetPassword.dart';
 import 'package:zad/screens/HomePage.dart';
+import 'package:zad/screens/SetLocationOne.dart';
 import 'package:zad/screens/login_screen.dart';
 import 'package:zad/screens/register_screen.dart';
 import 'package:zad/widgets/ProductCard.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Zad",
-      home: LoginPage(),
+      home: SetLocationOne(),
     );
   }
 }

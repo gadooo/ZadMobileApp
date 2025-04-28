@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final TextEditingController controller;
+  final Widget? sufix; // Add this line to include the prefix widget
 
   const CustomTextField({
     Key? key,
@@ -12,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
     required this.controller,
+    this.sufix,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
+        suffixIcon: sufix,
         labelText: labelText,
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.grey),

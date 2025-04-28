@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zad/screens/VirefiyCode.dart';
+import 'package:zad/screens/VirefiyCodePage.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
 
