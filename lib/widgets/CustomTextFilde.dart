@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
+  final String labelText;
   final String hintText;
-  final IconData prefixIcon;
   final bool obscureText;
   final TextEditingController controller;
 
   const CustomTextField({
     Key? key,
+    required this.labelText,
     required this.hintText,
-    required this.prefixIcon,
     this.obscureText = false,
     required this.controller,
   }) : super(key: key);
@@ -20,10 +20,18 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
+        labelText: labelText,
         hintText: hintText,
-        prefixIcon: Icon(prefixIcon),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+        hintStyle: const TextStyle(color: Colors.grey),
+        filled: true,
+        fillColor: Colors.white,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.green.shade100),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.green.shade400, width: 1.5),
         ),
       ),
     );

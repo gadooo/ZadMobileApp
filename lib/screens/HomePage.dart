@@ -8,7 +8,7 @@ import 'package:zad/widgets/ProductCard.dart';
 import 'package:zad/widgets/SearchBar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

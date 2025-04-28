@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zad/Services/LoginApi.dart';
+import 'package:zad/Services/AuthApi.dart';
 import 'package:zad/screens/HomePage.dart';
+import 'package:zad/screens/register_screen.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
-
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    void login() async {
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  String? errorMessage; // متغير لتخزين رسالة الخطأ
+
+  void login() async {
+    try {
       final loginResponse = await AuthService.login(
         username: emailController.text, // حسب كلامك Username في API
         password: passwordController.text,
@@ -23,21 +31,30 @@ class LoginPage extends StatelessWidget {
         // print('Login Successful: Token => ${loginResponse.token}');
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', loginResponse.token!);
-        print(prefs.getString('token'));
-
-        // TODO: Save token (مثل SharedPreferences أو Secure Storage)
 
         // التوجه إلى الصفحة الرئيسية بعد تسجيل الدخول الناجح
         Navigator.pushReplacement(
+          // ignore: use_build_context_synchronously
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
-      } else {
-        print('Login Failed');
-        // TODO: Show error (مثل عرض رسالة أو Snackbar)
       }
+    } catch (e) {
+      // تحديث رسالة الخطأ
+      setState(() {
+        errorMessage = e.toString();
+        // تحديث رسالة الخطأ
+      });
+      Future.delayed(const Duration(seconds: 4), () {
+        setState(() {
+          errorMessage = null; // إخفاء رسالة الخطأ بعد ثانيتين
+        });
+      });
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -50,15 +67,28 @@ class LoginPage extends StatelessWidget {
                 height: 120,
               ),
               const SizedBox(height: 40),
+              if (errorMessage != null) // إظهار رسالة الخطأ إذا موجودة
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.red[100],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
               CustomTextField(
+                labelText: "name",
                 hintText: 'Enter your Email or Number',
-                prefixIcon: Icons.email,
                 controller: emailController,
               ),
               const SizedBox(height: 20),
               CustomTextField(
+                labelText: "password",
                 hintText: 'Password',
-                prefixIcon: Icons.lock,
                 controller: passwordController,
                 obscureText: true,
               ),
@@ -66,9 +96,7 @@ class LoginPage extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-                    // TODO: go to Forget Password page
-                  },
+                  onPressed: () {},
                   child: const Text(
                     'Forget password',
                     style: TextStyle(color: Colors.blue),
@@ -87,7 +115,10 @@ class LoginPage extends StatelessWidget {
                   const Text("You don't have an account?"),
                   TextButton(
                     onPressed: () {
-                      // TODO: go to SignUp Page
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterPage()));
                     },
                     child: const Text('Sign up'),
                   ),
@@ -109,21 +140,15 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () {
-                      // TODO: Google Sign-In
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.g_mobiledata, size: 40),
                   ),
                   IconButton(
-                    onPressed: () {
-                      // TODO: Facebook Sign-In
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.facebook, size: 40),
                   ),
                   IconButton(
-                    onPressed: () {
-                      // TODO: Apple Sign-In
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.apple, size: 40),
                   ),
                 ],

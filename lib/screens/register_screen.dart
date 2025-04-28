@@ -1,123 +1,181 @@
-// import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:zad/widgets/CustomButtom.dart';
-// import 'package:zad/widgets/CustomTextFilde.dart';
-// import 'package:zad/widgets/SocialMediaIcon.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:zad/Services/AuthApi.dart';
+import 'package:zad/screens/login_screen.dart';
+import 'package:zad/widgets/CustomButtom.dart';
+import 'package:zad/widgets/CustomTextFilde.dart';
+import 'package:zad/widgets/SocialMediaIcon.dart';
 
-// class RegisterPage extends StatelessWidget {
-//   const RegisterPage({super.key});
+class RegisterPage extends StatefulWidget {
+  RegisterPage({super.key}) {
+    //
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Center(
-//           child: SingleChildScrollView(
-//             padding: const EdgeInsets.symmetric(horizontal: 20),
-//             child: Column(children: [
-//               const SizedBox(height: 40),
-//               Image.asset(
-//                 'lib/images/logo.png', // replace with your actual asset path
-//                 height: 120,
-//               ),
-//               const SizedBox(height: 40),
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
 
-//               // Name Field
-//               const CustomTextField(hintText: 'inte the name',
-               
-//               ),
-//               const SizedBox(height: 20),
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController nameController = TextEditingController();
 
-//               // Email Field
-//               const CustomTextField(
-//                 label: 'Email',
-//                 hintText: 'Enter your Email Or Number',
-//                 prefixIcon: Icons.email_outlined,
-//                 keyboardType: TextInputType.emailAddress,
-//               ),
-//               const SizedBox(height: 20),
+  final TextEditingController phoneNumberlController = TextEditingController();
 
-//               // Password Field
-//               const CustomTextField(
-//                 label: 'Password',
-//                 hintText: '************',
-//                 prefixIcon: Icons.lock_outline,
-//                 obscureText: true,
-//                 suffixIcon: Icon(Icons.visibility_outlined),
-//               ),
+  final TextEditingController passwordController = TextEditingController();
 
-//               const SizedBox(height: 10),
+  String? errorMessage;
+  void register() async {
+    try {
+      final success = await AuthService.register(
+        username: nameController.text,
+        email: phoneNumberlController.text,
+        password: passwordController.text,
+      );
 
-//               // Confirm Password Field
-//               const CustomTextField(
-//                 label: 'Confirm Password',
-//                 hintText: '************',
-//                 prefixIcon: Icons.lock_outline,
-//                 obscureText: true,
-//                 suffixIcon: Icon(Icons.visibility_outlined),
-//               ),
+      if (success) {
+        // بعد التسجيل الناجح ممكن توديه صفحة تسجيل الدخول
+        if (!mounted) return;
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+      }
+    } catch (e) {
+      setState(() {
+        errorMessage = e.toString();
+        // errorMessage = 'Registration failed. Please try again.';
+      });
+      print(e.toString());
 
-//               const SizedBox(height: 10),
+      // ignore: use_build_context_synchronously
+      Future.delayed(const Duration(seconds: 4), () {
+        setState(() {
+          errorMessage = null; // إخفاء رسالة الخطأ بعد ثانيتين
+        });
+      });
+    }
+  }
 
-//               // Terms and Conditions
-//               Row(
-//                 children: [
-//                   Checkbox(
-//                     value: false,
-//                     onChanged: (value) {},
-//                     overlayColor: const MaterialStatePropertyAll(Colors.grey),
-//                   ),
-//                   const Text(
-//                     'I accept the terms and conditions',
-//                     style: TextStyle(color: Colors.grey),
-//                   ),
-//                 ],
-//               ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(children: [
+              const SizedBox(height: 40),
+              Image.asset(
+                'lib/images/logo.png', // replace with your actual asset path
+                height: 120,
+              ),
+              const SizedBox(height: 40),
 
-//               // Register Button
-//               CustomButton(
-//                 text: "Register",
-//                 backgroundColor: const Color(0xFF68AD80),
-//                 textColor: Colors.white,
-//                 onPressed: () {},
-//               ),
-//               const Row(
-//                 children: [
-//                   Expanded(child: Divider()),
-//                   Padding(
-//                     padding: EdgeInsets.symmetric(horizontal: 10),
-//                     child: Text('OR'),
-//                   ),
-//                   Expanded(child: Divider()),
-//                 ],
-//               ),
+              // Error Message
+              if (errorMessage != null) // إظهار رسالة الخطأ إذا موجودة
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.red[100],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
+              // Name Field
+              CustomTextField(
+                labelText: 'Name',
+                controller: nameController,
+                hintText: 'inter the name',
+              ),
+              const SizedBox(height: 20),
 
-//               const SizedBox(height: 20),
+              // Email Field
+              CustomTextField(
+                hintText: 'inter the phone number',
+                controller: phoneNumberlController,
+                labelText: 'Phone Number',
+              ),
+              const SizedBox(height: 20),
 
-//               // Social Buttons
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: [
-//                   SocialIconButton(
-//                     icon: const Icon(FontAwesomeIcons.google),
-//                     onTap: () {},
-//                   ), // replace with your icons
-//                   const SizedBox(width: 20),
-//                   SocialIconButton(
-//                     icon: const Icon(FontAwesomeIcons.facebook),
-//                     onTap: () {},
-//                   ),
-//                   const SizedBox(width: 20),
-//                   SocialIconButton(
-//                     icon: const Icon(FontAwesomeIcons.apple),
-//                     onTap: () {},
-//                   ),
-//                 ],
-//               ),
-//             ]),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+              // Password Field
+              CustomTextField(
+                hintText: 'inter the password',
+                obscureText: true,
+                controller: passwordController,
+                labelText: 'Password',
+              ),
+
+              const SizedBox(height: 10),
+
+              // Confirm Password Field
+              CustomTextField(
+                hintText: 'confirm the password',
+                obscureText: true,
+                controller: passwordController,
+                labelText: 'Confirm Password',
+              ),
+
+              const SizedBox(height: 10),
+
+              // Terms and Conditions
+              Row(
+                children: [
+                  Checkbox(
+                    value: false,
+                    onChanged: (value) {},
+                    overlayColor: const WidgetStatePropertyAll(Colors.grey),
+                  ),
+                  const Text(
+                    'I accept the terms and conditions',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+
+              // Register Button
+              CustomButton(
+                text: 'Register',
+                onPressed: register,
+              ),
+
+              const Row(
+                children: [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('OR'),
+                  ),
+                  Expanded(child: Divider()),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // Social Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialIconButton(
+                    icon: const Icon(FontAwesomeIcons.google),
+                    onTap: () {},
+                  ), // replace with your icons
+                  const SizedBox(width: 20),
+                  SocialIconButton(
+                    icon: const Icon(FontAwesomeIcons.facebook),
+                    onTap: () {},
+                  ),
+                  const SizedBox(width: 20),
+                  SocialIconButton(
+                    icon: const Icon(FontAwesomeIcons.apple),
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
