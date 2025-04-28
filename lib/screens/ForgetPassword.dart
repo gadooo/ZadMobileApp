@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zad/screens/VirefiyCode.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
 
@@ -34,7 +35,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   hintText: "Enter your Email or phone numer ",
                   controller: TextEditingController()),
               SizedBox(height: 45),
-              CustomButton(text: "Send", onPressed: () {})
+              CustomButton(
+                  text: "Send",
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const VirefiyCode()));
+                  })
             ]),
       ),
     );
