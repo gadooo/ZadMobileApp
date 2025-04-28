@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zad/Services/AuthApi.dart';
+import 'package:zad/screens/ForgetPassword.dart';
 import 'package:zad/screens/HomePage.dart';
 import 'package:zad/screens/register_screen.dart';
 import 'package:zad/widgets/CustomButtom.dart';
@@ -96,7 +97,14 @@ class _LoginPageState extends State<LoginPage> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ForgetPassword(),
+                      ),
+                    );
+                  },
                   child: const Text(
                     'Forget password',
                     style: TextStyle(color: Colors.blue),
