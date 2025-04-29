@@ -6,7 +6,6 @@ import 'package:zad/Models/ProductModel.dart';
 import 'package:zad/Services/ProductApi.dart';
 import 'package:zad/widgets/CategoryTab.dart';
 import 'package:zad/widgets/LimitedOffer.dart';
-import 'package:zad/widgets/NavigationBottomBar.dart';
 import 'package:zad/widgets/ProductCard.dart';
 import 'package:zad/widgets/SearchBar.dart';
 
@@ -16,8 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:
-          const NavigationBottomBar(), // Add your bottom navigation bar here
+      // Add your bottom navigation bar here
       body: Container(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(

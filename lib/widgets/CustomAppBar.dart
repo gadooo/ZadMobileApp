@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final VoidCallback? onMenuTap;
   final Widget? icon;
+  final Widget? title;
 
   const CustomAppBar({
     super.key,
@@ -15,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.onMenuTap,
     this.icon,
+    this.title,
   });
 
   @override
@@ -23,12 +25,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       toolbarHeight: height,
-      title: Image.asset(
-        'lib/images/logo.png',
-        height: 35,
-        width: 35,
-      ),
-      leading: leading,
+      title: title ??
+          Image.asset(
+            'lib/images/logo.png',
+            height: 35,
+            width: 35,
+          ),
+      actions: [
+        leading ??
+            IconButton(
+              icon: icon ?? const Icon(Icons.menu, color: Colors.black),
+              onPressed: onMenuTap,
+            ),
+      ],
     );
   }
 

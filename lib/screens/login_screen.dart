@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zad/Services/AuthApi.dart';
 import 'package:zad/screens/ForgetPassword.dart';
-import 'package:zad/screens/HomePage.dart';
+import 'package:zad/screens/MainScreen.dart';
 import 'package:zad/screens/register_screen.dart';
 import 'package:zad/widgets/CustomButtom.dart';
 import 'package:zad/widgets/CustomTextFilde.dart';
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           // ignore: use_build_context_synchronously
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const MainPage()),
         );
       }
     } catch (e) {

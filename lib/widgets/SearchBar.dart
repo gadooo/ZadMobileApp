@@ -3,7 +3,12 @@
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatelessWidget {
-  const SearchBarWidget({super.key});
+  final Color? themsColor;
+
+  const SearchBarWidget({
+    super.key,
+    this.themsColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +28,14 @@ class SearchBarWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.search, color: Colors.grey),
+          Icon(Icons.search, color: themsColor ?? Colors.grey),
           const SizedBox(width: 10),
-          const Expanded(
+          Expanded(
             child: TextField(
               decoration: InputDecoration(
+                hintStyle: TextStyle(
+                    color: themsColor ??
+                        const Color.fromARGB(255, 60, 60, 60)), // hintStyle
                 hintText: 'Search',
                 border: InputBorder.none,
               ),
@@ -36,10 +44,10 @@ class SearchBarWidget extends StatelessWidget {
           Container(
             width: 1,
             height: 24,
-            color: Colors.grey[300],
+            color: themsColor ?? Colors.grey[300],
           ),
           const SizedBox(width: 10),
-          const Icon(Icons.mic_none, color: Colors.grey),
+          Icon(Icons.mic_none, color: themsColor ?? Colors.grey),
         ],
       ),
     );
