@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class CustomCategoryCard extends StatelessWidget {
@@ -45,12 +47,11 @@ class CustomCategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    imagePath,
-                    fit: BoxFit.contain,
-                  ),
-                ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.memory(base64Decode(imagePath),
+                        fit: BoxFit.contain)
+                    // أو صورة افتراضية
+                    ),
               ),
               const SizedBox(height: 12),
               Text(

@@ -25,19 +25,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       toolbarHeight: height,
-      title: title ??
-          Image.asset(
-            'lib/images/logo.png',
-            height: 35,
-            width: 35,
-          ),
-      actions: [
-        leading ??
-            IconButton(
-              icon: icon ?? const Icon(Icons.menu, color: Colors.black),
-              onPressed: onMenuTap,
-            ),
-      ],
+      title: title ?? const SizedBox(),
+      actions: [leading ?? const SizedBox()],
     );
   }
 
